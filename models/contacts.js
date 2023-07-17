@@ -42,13 +42,13 @@ export const removeContact = async (id) => {
   return result;
 }
 
-export const updateContact = async (contactId, body) => {
+export const updateContact = async (id, body) => {
   const contacts = await listContacts();
-  const result = contacts.find(item => item.id === contactId );
+  const result = contacts.findIndex((item) => item.id === id );
   if (result === -1) {
     return null;
   }
-  contacts[result] = { id: contactId, ...body };
+  contacts[result] = { id, ...body };
   await updateContacts(contacts);
   return contacts[result];
 }
