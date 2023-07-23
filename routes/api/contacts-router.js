@@ -2,7 +2,7 @@ import express from "express";
 
 import controllersService from "../../controllers/controllers.js";
 
-import { isEmptyBody, isValidId } from "../../middlewares/index.js"
+import { isEmptyBody, isPatchBody, isValidId } from "../../middlewares/index.js"
 
 import { validateBody } from "../../decorators/index.js"
 
@@ -18,7 +18,7 @@ contactsRouter.post('/', isEmptyBody, validateBody(contactsAddSchema.contactsAdd
 
 contactsRouter.put('/:id', isValidId, isEmptyBody, validateBody(contactsAddSchema.contactsAddSchema), controllersService.updateContact)
 
-contactsRouter.patch('/:id/favorite', isValidId, isEmptyBody, validateBody(contactsAddSchema.contactUpdateFavoriteSchema), controllersService.updateFavorite)
+contactsRouter.patch('/:id/favorite', isValidId, isPatchBody, validateBody(contactsAddSchema.contactUpdateFavoriteSchema), controllersService.updateFavorite)
 
 contactsRouter.delete('/:id', isValidId, controllersService.removeContact)
 
