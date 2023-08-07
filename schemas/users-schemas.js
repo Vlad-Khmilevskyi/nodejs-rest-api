@@ -11,6 +11,13 @@ const userValidationSchema = Joi.object({
   }),
 })
 
+const emailSchema = Joi.object({
+  email: Joi.string().pattern(emailPegexp).required().messages({
+    "any.required": `missing required email field`,
+  }),
+})
+
 export default {
   userValidationSchema,
+  emailSchema,
 }
